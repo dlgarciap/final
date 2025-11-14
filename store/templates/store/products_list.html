@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+<h1>Productos <a class="btn btn-sm btn-primary" href="{% url 'store:product_add' %}">Agregar</a></h1>
+<table class="table">
+  <thead><tr><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.category }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.stock }}</td>
+      <td><a class="btn btn-sm btn-secondary" href="{% url 'store:product_edit' p.pk %}">Editar</a></td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No hay productos.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
